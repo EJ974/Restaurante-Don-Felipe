@@ -1,0 +1,18 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+
+  background-image: url("/img/fondo/5577133.jpg"); /* tu imagen */
+  background-size: cover;       /* 🔥 cubre toda la pantalla */
+  background-position: center;  /* centrado */
+  background-repeat: no-repeat;
+  background-attachment: fixed; /* 🔥 efecto elegante (parallax leve) */
+
+  font-family: sans-serif;
+}

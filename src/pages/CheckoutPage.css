@@ -1,0 +1,110 @@
+/* CONTENEDOR */
+.checkout-container {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(135deg, #fff5f5, #ffeaea);
+  padding: 20px;
+}
+
+/* CARD */
+.checkout-card {
+  background: white;
+  padding: 30px;
+  border-radius: 20px;
+  width: 100%;
+  max-width: 500px;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+  animation: slideUp 0.6s ease;
+}
+
+/* TITULO */
+.title {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+/* SECCIONES */
+.section {
+  margin-bottom: 20px;
+  padding: 15px;
+  border-radius: 12px;
+  background: #fafafa;
+  border: 1px solid #eee;
+}
+
+/* ITEMS */
+.item-row {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 6px;
+}
+
+/* TOTAL */
+.total {
+  margin-top: 5px;
+  color: #8b0000;
+}
+
+/* MP */
+.mp-box {
+  margin-top: 10px;
+  background: #f1f1f1;
+  padding: 10px;
+  border-radius: 8px;
+  border-left: 4px solid #8b0000;
+}
+
+/* BOTÓN */
+.btn-final {
+  width: 100%;
+  margin-top: 20px;
+  padding: 14px;
+  background: #25d366;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.btn-final:hover {
+  background: #1ebe5d;
+  transform: scale(1.03);
+}
+
+/* ANIMACIONES */
+@keyframes slideUp {
+  from {
+    transform: translateY(50px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.fade-in {
+  opacity: 0;
+  animation: fadeIn 0.8s ease forwards;
+}
+
+.delay-1 { animation-delay: 0.2s; }
+.delay-2 { animation-delay: 0.4s; }
+.delay-3 { animation-delay: 0.6s; }
+
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+  }
+}
+
+/* 📱 RESPONSIVE */
+@media (max-width: 480px) {
+  .checkout-card {
+    padding: 20px;
+  }
+}

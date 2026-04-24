@@ -1,0 +1,253 @@
+/* 🔥 OVERLAY CON BLUR */
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.4);
+  backdrop-filter: blur(4px);
+  z-index: 999;
+
+  opacity: 0;
+  animation: fadeOverlay 0.3s forwards;
+}
+
+@keyframes fadeOverlay {
+  to { opacity: 1; }
+}
+
+/* 🔥 CARRITO PANEL */
+.cart {
+  position: fixed;
+  top: 80px; /* 🔥 BAJADO PARA NO TAPAR NAVBAR */
+  right: -380px;
+
+  width: 340px;
+  height: calc(100vh - 100px);
+
+  background: rgba(255,255,255,0.95);
+  backdrop-filter: blur(10px);
+
+  border-radius: 20px 0 0 20px;
+  box-shadow: -10px 0 30px rgba(0,0,0,0.25);
+
+  padding: 20px;
+
+  display: flex;
+  flex-direction: column;
+
+  transition: all 0.4s cubic-bezier(.25,.8,.25,1);
+  z-index: 1000;
+}
+
+/* 🔥 ABIERTO */
+.cart.open {
+  right: 0;
+}
+
+/* 🔥 ANIMACIÓN ENTRADA */
+.cart.open {
+  animation: slideIn 0.4s ease;
+}
+
+@keyframes slideIn {
+  from {
+    right: -380px;
+    opacity: 0;
+  }
+  to {
+    right: 0;
+    opacity: 1;
+  }
+}
+
+/* 🔥 SCROLL PRO */
+.cart-list {
+  flex: 1;
+  overflow-y: auto;
+  margin: 10px 0;
+  padding-right: 5px;
+}
+
+.cart-list::-webkit-scrollbar {
+  width: 5px;
+}
+
+.cart-list::-webkit-scrollbar-thumb {
+  background: #bbb;
+  border-radius: 10px;
+}
+
+/* 🔥 ITEM */
+.cart-list li {
+  display: grid;
+  grid-template-columns: 1fr 70px 70px;
+  gap: 10px;
+  align-items: center;
+
+  padding: 12px 0;
+  border-bottom: 1px solid #eee;
+
+  transition: 0.2s;
+}
+
+.cart-list li:hover {
+  transform: translateX(3px);
+}
+
+/* 🔥 NOMBRE */
+.item-name {
+  font-size: 14px;
+  font-weight: 600;
+}
+
+/* 🔥 CONTROLES */
+.item-controls {
+  display: flex;
+  gap: 6px;
+  justify-content: center;
+}
+
+.item-controls button {
+  background: #f1f1f1;
+  border: none;
+  padding: 4px 8px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.item-controls button:hover {
+  background: #ddd;
+  transform: scale(1.1);
+}
+
+/* 🔥 PRECIO */
+.item-price {
+  text-align: right;
+  font-weight: bold;
+  color: #8b0000;
+}
+
+/* 🔥 TOTAL */
+.cart h4 {
+  margin-top: 10px;
+  padding-top: 10px;
+  border-top: 2px solid #000;
+  font-size: 16px;
+}
+
+/* 🔥 BOTONES */
+.btn-checkout {
+  width: 100%;
+  margin-top: 15px;
+  padding: 12px;
+
+  background: linear-gradient(135deg, #8b0000, #a00000);
+  color: white;
+
+  border: none;
+  border-radius: 10px;
+
+  font-weight: bold;
+  cursor: pointer;
+
+  transition: 0.3s;
+}
+
+.btn-checkout:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+
+/* 🔥 BOTÓN LIMPIAR */
+.btn-clear {
+  width: 100%;
+  margin-top: 8px;
+  padding: 8px;
+
+  background: #eee;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.btn-clear:hover {
+  background: #ddd;
+}
+
+/* 🔥 INPUTS */
+.cart input,
+.cart select {
+  width: 100%;
+  margin-top: 8px;
+  padding: 8px;
+
+  border-radius: 8px;
+  border: 1px solid #ccc;
+
+  font-size: 14px;
+}
+
+/* 📱 MOBILE */
+@media (max-width: 768px) {
+  .cart {
+    width: 85%;
+    top: 70px;
+    height: calc(100vh - 80px);
+  }
+}
+
+/* ITEM */
+.cart-list li {
+  display: grid;
+  grid-template-columns: 1fr 90px 80px 30px;
+  align-items: center;
+  gap: 8px;
+}
+
+/* NOMBRE */
+.item-name {
+  font-size: 14px;
+  font-weight: 600;
+}
+
+/* CONTROLES */
+.item-controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+}
+
+.item-controls button {
+  background: #eee;
+  border: none;
+  padding: 4px 7px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+/* PRECIO */
+.item-price {
+  text-align: right;
+  font-weight: bold;
+  color: #8b0000;
+}
+
+/* ELIMINAR */
+.remove-btn {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  color: red;
+}
+
+/* TOTAL */
+.cart-total {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+  font-weight: bold;
+  font-size: 16px;
+  border-top: 2px solid #000;
+  padding-top: 10px;
+}
