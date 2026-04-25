@@ -41,6 +41,14 @@ function Gallery() {
 
   useEffect(() => {
     setVisible(true);
+
+    // 🔥 cerrar con ESC
+    const handleKey = (e) => {
+      if (e.key === "Escape") setSelectedImg(null);
+    };
+
+    window.addEventListener("keydown", handleKey);
+    return () => window.removeEventListener("keydown", handleKey);
   }, []);
 
   const filtradas =
@@ -54,7 +62,7 @@ function Gallery() {
       <div className="gallery-header">
         <img
           src="./img/galeria/galeria.png"
-          alt="Nuestro Menú"
+          alt="Galería"
           className="gallery-title-img"
         />
       </div>
@@ -80,7 +88,7 @@ function Gallery() {
             key={index}
             onClick={() => setSelectedImg(img)}
           >
-            <img src={img.url} alt="" />
+            <img src={img.url} alt={img.title} />
 
             <div className="overlay">
               <h3>{img.title}</h3>
@@ -92,17 +100,31 @@ function Gallery() {
 
       {/* 🔥 LIGHTBOX */}
       {selectedImg && (
-        <div className="lightbox" onClick={() => setSelectedImg(null)}>
+        <div className="lightbox">
+          
+          {/* cerrar haciendo click afuera */}
           <div
-            className="lightbox-content"
-            onClick={(e) => e.stopPropagation()}
-          >
-            <span className="close">✖</span>
-            <img src={selectedImg.url} alt="" />
+            className="lightbox-overlay"
+            onClick={() => setSelectedImg(null)}
+          ></div>
+
+          <div className="lightbox-content">
+            
+            {/* ❌ BOTÓN CERRAR */}
+            <button
+              className="close"
+              onClick={() => setSelectedImg(null)}
+            >
+              ✖
+            </button>
+
+            <img src={selectedImg.url} alt={selectedImg.title} />
             <p>{selectedImg.title}</p>
+
           </div>
         </div>
       )}
+
     </section>
   );
 }
