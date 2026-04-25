@@ -4,157 +4,14 @@
   text-align: center;
 }
 
-/* TITULO */
-.gallery-title {
-  font-size: 32px;
-  margin-bottom: 20px;
-}
-
-/* 🔥 FILTROS */
-.gallery-filters {
-  margin-bottom: 25px;
-}
-
-.gallery-filters button {
-  margin: 5px;
-  padding: 8px 16px;
-  border: none;
-  border-radius: 20px;
-  background: #eee;
-  cursor: pointer;
-  transition: 0.3s;
-}
-
-.gallery-filters .active {
-  background: #8b0000;
-  color: white;
-}
-
-/* GRID */
-.gallery-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 15px;
-
-  opacity: 0;
-  transform: translateY(30px);
-}
-
-/* 🔥 APARECE CON ANIMACIÓN */
-.gallery-grid.show {
-  animation: fadeUp 0.6s ease forwards;
-}
-
-@keyframes fadeUp {
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-/* CARD */
-.gallery-card {
-  position: relative;
-  overflow: hidden;
-  border-radius: 15px;
-  cursor: pointer;
-}
-
-/* IMAGEN */
-.gallery-card img {
-  width: 100%;
-  height: 220px;
-  object-fit: cover;
-  transition: 0.5s;
-}
-
-/* 🔥 HOVER ZOOM */
-.gallery-card:hover img {
-  transform: scale(1.1);
-}
-
-/* 🔥 OVERLAY */
-.overlay {
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  padding: 15px;
-
-  background: linear-gradient(
-    to top,
-    rgba(0,0,0,0.8),
-    transparent
-  );
-
-  color: white;
-  opacity: 0;
-  transition: 0.3s;
-}
-
-.gallery-card:hover .overlay {
-  opacity: 1;
-}
-
-/* TEXTO */
-.overlay h3 {
-  margin: 0;
-  font-size: 16px;
-}
-
-.overlay span {
-  font-size: 12px;
-  color: #ccc;
-}
-
-/* 🔥 LIGHTBOX */
-.lightbox {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0,0,0,0.9);
-
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 999;
-}
-
-.lightbox-content {
-  position: relative;
-  text-align: center;
-}
-
-.lightbox-content img {
-  max-width: 90%;
-  max-height: 80vh;
-  border-radius: 15px;
-}
-
-.lightbox-content p {
-  color: white;
-  margin-top: 10px;
-}
-
-/* CERRAR */
-.close {
-  position: absolute;
-  top: -30px;
-  right: 0;
-  color: white;
-  font-size: 20px;
-  cursor: pointer;
-}
-
 /* HEADER */
 .gallery-header {
   display: flex;
   justify-content: center;
-  margin-bottom: 20px;
+  margin-bottom: 25px;
 }
 
-/* IMAGEN */
+/* IMAGEN TITULO */
 .gallery-title-img {
   width: 100%;
   max-width: 700px;
@@ -163,17 +20,18 @@
 
   animation: fadeDown 0.6s ease;
 
-  /* 🔥 EFECTO 3D */
   border-radius: 12px;
 
-  /* SOMBRA PRINCIPAL */
   box-shadow:
-    0 10px 25px rgba(0, 0, 0, 0.4),   /* sombra abajo */
-    0 4px 10px rgba(0, 0, 0, 0.3),    /* sombra media */
-    inset 0 1px 2px rgba(255,255,255,0.2); /* brillo interno */
+    0 10px 25px rgba(0, 0, 0, 0.4),
+    0 4px 10px rgba(0, 0, 0, 0.3),
+    inset 0 1px 2px rgba(255,255,255,0.2);
 
-  /* SUAVIZADO */
   transition: 0.3s;
+}
+
+.gallery-title-img:hover {
+  transform: scale(1.03);
 }
 
 /* ANIMACIÓN */
@@ -188,16 +46,213 @@
   }
 }
 
-/* 📱 MOBILE */
-@media (max-width: 768px) {
-  .gallery-title-img {
-    max-width: 380px;
+/* 🔥 FILTROS */
+.gallery-filters {
+  margin-bottom: 30px;
+}
+
+.gallery-filters button {
+  margin: 5px;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 20px;
+  background: #eee;
+  cursor: pointer;
+  transition: 0.3s;
+  font-size: 13px;
+}
+
+.gallery-filters button:hover {
+  transform: translateY(-2px);
+  background: #ddd;
+}
+
+.gallery-filters .active {
+  background: #8b0000;
+  color: white;
+}
+
+/* 🔥 GRID TIPO PINTEREST */
+.gallery-grid {
+  column-count: 4;
+  column-gap: 15px;
+
+  opacity: 0;
+  transform: translateY(30px);
+}
+
+/* ANIMACIÓN ENTRADA */
+.gallery-grid.show {
+  animation: fadeUp 0.6s ease forwards;
+}
+
+@keyframes fadeUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* CARD */
+.gallery-card {
+  position: relative;
+  margin-bottom: 15px;
+  overflow: hidden;
+  border-radius: 15px;
+  cursor: pointer;
+
+  transform: translateY(20px);
+  opacity: 0;
+  animation: fadeCard 0.5s forwards;
+}
+
+/* delay dinámico (lo activás desde React si querés) */
+.gallery-card:nth-child(1) { animation-delay: 0.05s; }
+.gallery-card:nth-child(2) { animation-delay: 0.1s; }
+.gallery-card:nth-child(3) { animation-delay: 0.15s; }
+.gallery-card:nth-child(4) { animation-delay: 0.2s; }
+
+/* ANIMACIÓN CARD */
+@keyframes fadeCard {
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* IMAGEN */
+.gallery-card img {
+  width: 100%;
+  display: block;
+  border-radius: 15px;
+  transition: 0.4s;
+}
+
+/* 🔥 HOVER PRO */
+.gallery-card:hover img {
+  transform: scale(1.08);
+  filter: brightness(0.6);
+}
+
+/* 🔥 OVERLAY MODERNO */
+.overlay {
+  position: absolute;
+  inset: 0;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  color: white;
+  text-align: center;
+
+  opacity: 0;
+  transition: 0.3s;
+
+  backdrop-filter: blur(4px);
+}
+
+.gallery-card:hover .overlay {
+  opacity: 1;
+}
+
+/* TEXTO */
+.overlay h3 {
+  margin: 0;
+  font-size: 18px;
+}
+
+.overlay span {
+  font-size: 12px;
+  opacity: 0.8;
+}
+
+/* 🔥 LIGHTBOX PRO */
+.lightbox {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.9);
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  z-index: 9999;
+}
+
+/* CONTENIDO */
+.lightbox-content {
+  position: relative;
+  max-width: 90%;
+  max-height: 90%;
+  text-align: center;
+
+  animation: zoomIn 0.3s ease;
+}
+
+/* IMAGEN */
+.lightbox-content img {
+  max-width: 100%;
+  max-height: 70vh;
+  border-radius: 12px;
+}
+
+/* TEXTO */
+.lightbox-content p {
+  color: white;
+  margin-top: 10px;
+  font-size: 14px;
+}
+
+/* CERRAR */
+.close {
+  position: absolute;
+  top: -35px;
+  right: 0;
+  color: white;
+  font-size: 24px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.close:hover {
+  transform: scale(1.2);
+}
+
+/* ANIMACIÓN LIGHTBOX */
+@keyframes zoomIn {
+  from {
+    transform: scale(0.8);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* 📱 TABLET */
+@media (max-width: 1024px) {
+  .gallery-grid {
+    column-count: 3;
   }
 }
 
 /* 📱 MOBILE */
 @media (max-width: 768px) {
   .gallery-grid {
-    grid-template-columns: repeat(2, 1fr);
+    column-count: 2;
+  }
+
+  .gallery-title-img {
+    max-width: 380px;
+  }
+}
+
+/* 📱 MOBILE CHICO */
+@media (max-width: 480px) {
+  .gallery-grid {
+    column-count: 1;
   }
 }
